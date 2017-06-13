@@ -64,34 +64,39 @@ void setup() {
 void draw() {
   //frameRate(30);
   
-  if(isDrawLine){
-    background(currentHue, 255, 255);
-    fillBack = false;
-    drawText();
-  }else{
-    println("fillBack : "+fillBack);
-    if(!fillBack){
-      background(currentHue, 255, 255);
-      fillBack = true;
-      println("fill");
-    };
-    println("scl.x : "+scl.x);
-    println("scl.y : "+scl.y);
-    if(scl.x < 0.1 && scl.y < 0.1){
-      resetLineDefaults();
-    };
-    // drawLineAni();
-  }
-
-  // background(255);
+  // if(isDrawLine){
+  //   background(currentHue, 255, 255);
+  //   fillBack = false;
+  //   drawText();
+  // }else{
+  //   println("fillBack : "+fillBack);
+  //   if(!fillBack){
+  //     background(currentHue, 255, 255);
+  //     fillBack = true;
+  //     println("fill");
+  //   };
+  //   println("scl.x : "+scl.x);
+  //   println("scl.y : "+scl.y);
+  //   if(scl.x < 0.1 && scl.y < 0.1){
+  //     resetLineDefaults();
+  //   };
+  //   // drawLineAni();
+  // }
 
   // Option #1 (move the Particle System origin)
   ps.origin.set(mouseX,mouseY,0);
 
   // Option #2 (move the Particle System origin)
   // ps.addParticle(mouseX,mouseY);
-      
-  ps.addParticle();
+  
+  if(currentMessage.equals("1")){
+    ps.addParticle();
+  }else if(currentMessage.equals("2")){
+    //background(255);
+    fill(200,200,200);
+  }else if(currentMessage.equals("3")){
+    background(255);
+  }  
   ps.run();
 }
 
@@ -125,7 +130,7 @@ void showMessage(int i) {
     currentHue = (int)generateColor(i);
     currentTextHue = (int)generateColor((i+1));
     currentMessage = Integer.toString(i);
-    if(i > 4){
+    if(i > 1){
       isDrawLine = true;
     }else{
       isDrawLine = false;
